@@ -6,8 +6,11 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
-app.use('/', (req: Request, res: Response) => {
-  console.log(req)
+app.use(express.raw({ type: '*/*', limit: '10mb' }));
+
+app.post('/', (req: Request, res: Response) => {
+  console.log(req.body.toString('utf-8'));
+  res.sendStatus(200);
 });
 
 app.listen(port, () => {
