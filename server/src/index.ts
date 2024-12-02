@@ -5,7 +5,7 @@ import expressLayouts from 'express-ejs-layouts';
 
 dotenv.config();
 
-
+const base_url = '/dhss101-control';
 const app: Express = express();
 const port = process.env.PORT || 3000;
 const MAX_SLIDE = 100;
@@ -23,7 +23,7 @@ app.post('/forward', (req: Request, res: Response) => {
         SLIDE++;
         console.log('Now on slide:', SLIDE);
     }
-    res.redirect('/control');
+    res.redirect(base_url + '/control');
 });
 
 app.get('/set/:slide', (req: Request, res: Response) => {
@@ -32,7 +32,7 @@ app.get('/set/:slide', (req: Request, res: Response) => {
         SLIDE = s;
         console.log('Now on slide:', SLIDE);
     }
-    res.redirect('/control');
+    res.redirect(base_url + '/control');
 });
 
 app.post('/backward', (req: Request, res: Response) => {
@@ -40,7 +40,7 @@ app.post('/backward', (req: Request, res: Response) => {
         SLIDE--;
         console.log('Now on slide:', SLIDE);
     }
-    res.redirect('/control');
+    res.redirect(base_url + '/control');
 });
 
 app.get('/', (req: Request, res: Response) => {
