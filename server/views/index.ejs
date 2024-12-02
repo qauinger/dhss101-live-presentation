@@ -1,9 +1,9 @@
 <div style="font-size: 60px;">
-    <form action="/<%= base_url %>/backward" method="post">
+    <form action="<%= base_url %>/backward" method="post">
         <button type="submit" style="font-size: 60px;" <%- slide > 0 ? '' : 'disabled' %>>-</button>
     </form>
     <span><%= slide %></span>
-    <form action="/<%= base_url %>/forward" method="post">
+    <form action="<%= base_url %>/forward" method="post">
         <button type="submit" style="font-size: 60px;" <%- slide < max_slide ? '' : 'disabled' %>>+</button>
     </form>
 </div>
