@@ -1,16 +1,60 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+var cors = require('cors')
+import expressLayouts from 'express-ejs-layouts';
 
 dotenv.config();
 
+
 const app: Express = express();
 const port = process.env.PORT || 3000;
+const MAX_SLIDE = 100;
+
+var SLIDE = 0;
 
 app.use(express.raw({ type: '*/*', limit: '10mb' }));
+app.use(expressLayouts);
+app.use(cors())
+app.set('layout', 'layouts/layout');
+app.set('view engine', 'ejs');
 
-app.post('/', (req: Request, res: Response) => {
-  console.log(req.body.toString('utf-8'));
-  res.sendStatus(200);
+app.post('/forward', (req: Request, res: Response) => {
+    if(SLIDE < MAX_SLIDE) {
+        SLIDE++;
+        console.log('Now on slide:', SLIDE);
+    }
+    res.redirect('/control');
+});
+
+app.get('/set/:slide', (req: Request, res: Response) => {
+    let s = Number.parseInt(req.params.slide);
+    if(s >= 0 && s <= MAX_SLIDE) {
+        SLIDE = s;
+        console.log('Now on slide:', SLIDE);
+    }
+    res.redirect('/control');
+});
+
+app.post('/backward', (req: Request, res: Response) => {
+    if(SLIDE > 0) {
+        SLIDE--;
+        console.log('Now on slide:', SLIDE);
+    }
+    res.redirect('/control');
+});
+
+app.get('/', (req: Request, res: Response) => {
+    res.json({
+        'slide': SLIDE,
+        'max_slide': MAX_SLIDE
+    });
+});
+
+app.get('/control', (req: Request, res: Response) => {
+    res.render('index', {
+        slide: SLIDE,
+        max_slide: MAX_SLIDE
+    });
 });
 
 app.listen(port, () => {
