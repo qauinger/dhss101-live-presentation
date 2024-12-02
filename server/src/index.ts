@@ -52,6 +52,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.get('/control', (req: Request, res: Response) => {
     res.render('index', {
+        base_url: base_url,
         slide: SLIDE,
         max_slide: MAX_SLIDE
     });
