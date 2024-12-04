@@ -31,7 +31,7 @@
 	});
 
 	async function getSlide(): Promise<any> {
-		return fetch("http://localhost:3000")
+		return fetch("https://qauinger.com/dhss101-control")
   		.then(response => response.json())
   		.then(data => {
     		return data;
