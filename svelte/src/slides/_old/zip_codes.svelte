@@ -1,14 +1,16 @@
 <script lang='ts'>
 	import { mean, median, mode } from 'd3-array';
-    import { geoAlbersUsa } from 'd3-geo';
+  import { geoAlbersUsa } from 'd3-geo';
 	import { forceCollide, forceX, forceY } from 'd3-force';
 	import { Axis, Chart, Circle, ForceSimulation, geoFitObjectTransform, GeoPath, GeoPoint, Grid, Rule, Svg, Text, Tooltip } from 'layerchart';
 	import { states } from './states_geo';
 	import { data } from './zip_codes';
 	import { cubicOut } from 'svelte/easing';
-    const projection = geoAlbersUsa;
-    let selectedStateId: any = null;
-    let selectedCountiesFeatures: any = null;
+	import { fade } from 'svelte/transition';
+
+  const projection = geoAlbersUsa;
+  let selectedStateId: any = null;
+  let selectedCountiesFeatures: any = null;
 </script>
 
 <div class="w-[95%]" style="margin: 0 auto; font-family: Verdana; font-size: 24px;">
@@ -19,7 +21,7 @@
     data={data}
     geo={{
       projection,
-      fitGeojson: states,
+      // fitGeojson: states,
       applyTransform: ["translate", "scale"],
     }}
     transform={{
@@ -27,7 +29,7 @@
       translateOnScale: true,
       tweened: { duration: 800, easing: cubicOut },
     }}
-    tooltip={{ mode: "voronoi", debug: debugTooltip }}
+    tooltip={{ mode: "voronoi" }}
     let:projection
     let:transform
     let:tooltip
@@ -98,7 +100,7 @@
       {/each} -->
     </Svg>
 
-    <Tooltip.Root let:data>
+    <!-- <Tooltip.Root let:data>
         <Tooltip.Header>{data.zip}</Tooltip.Header>
         <Tooltip.List>
           <Tooltip.Item label="Latitude" value={data.lat} format="decimal" />
@@ -108,6 +110,6 @@
             format="decimal"
           />
         </Tooltip.List>
-      </Tooltip.Root>
+      </Tooltip.Root> -->
   </Chart>
 </div>

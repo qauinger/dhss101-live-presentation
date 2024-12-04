@@ -24,8 +24,13 @@
 		"@types/d3-array": "^3.2.1",
 		"@types/d3-force": "^3.0.10",
 		"@types/d3-geo": "^3.1.0",
+		"@types/d3-hierarchy": "^3.1.7",
+		"@types/d3-interpolate": "^3.0.4",
+		"@types/d3-random": "^3.0.3",
 		"@types/d3-scale": "^4.0.8",
+		"@types/d3-scale-chromatic": "^3.1.0",
 		"@types/d3-shape": "^3.1.6",
+		"@types/topojson": "^3.2.6",
 		"@typescript-eslint/eslint-plugin": "^8.0.0",
 		"@typescript-eslint/parser": "^8.0.0",
 		"autoprefixer": "^10.4.14",
@@ -46,9 +51,11 @@
 		"vitest": "^2.0.0"
 	},
 	"dependencies": {
+		"@types/topojson-specification": "^1.0.5",
 		"d3-array": "^3.2.4",
 		"d3-scale": "^4.0.2",
 		"dotenv": "16.4.2",
-		"layerchart": "^0.59.1"
+		"layerchart": "^0.59.1",
+		"topojson": "^3.0.2"
 	}
 }
